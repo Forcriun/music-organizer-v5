@@ -252,4 +252,19 @@ public class MusicOrganizer
             }
         }
     }
+
+    /**
+     * Elimina las canciones de la coleccion que contienen una determinada
+     * cadena en el titulo.
+     * @param stringInTitle La cadena que se busca.
+     */
+    public void removeByTitle(String stringInTitle){
+        Iterator<Track> it = tracks.iterator();
+        while(it.hasNext()){
+            Track currentTrack = it.next();
+            if(currentTrack.getTitle().toLowerCase().contains(stringInTitle.toLowerCase())){
+                it.remove();
+            }
+        }
+    }
 }
