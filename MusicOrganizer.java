@@ -237,4 +237,19 @@ public class MusicOrganizer
             System.out.println("No hay reproducción en curso.");
         }
     }
+
+    /**
+     * Elimina las canciones de la coleccion interpretadas por el artista
+     * introducido por paramtero.
+     * @param artist El artista de las canciones a eliminar.
+     */
+    public void removeByArtist(String artist){
+        Iterator<Track> it = tracks.iterator();
+        while(it.hasNext()){
+            Track currentTrack = it.next();
+            if(currentTrack.getArtist().contains(artist)){
+                it.remove();
+            }
+        }
+    }
 }
