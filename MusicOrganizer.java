@@ -15,6 +15,8 @@ public class MusicOrganizer
     private MusicPlayer player;
     // A reader that can read music files and load them as tracks.
     private TrackReader reader;
+    // Indica si hay una reproduccion en curso.
+    private boolean playback;
 
     /**
      * Create a MusicOrganizer
@@ -27,6 +29,7 @@ public class MusicOrganizer
         readLibrary("audio");
         System.out.println("Music library loaded. " + getNumberOfTracks() + " tracks.");
         System.out.println();
+        playback = false;
     }
 
     /**
@@ -57,6 +60,7 @@ public class MusicOrganizer
             Track track = tracks.get(index);
             track.incrementPlayCount();
             player.startPlaying(track.getFilename());
+            playback = true;
             System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
         }
     }
@@ -126,6 +130,7 @@ public class MusicOrganizer
         if(tracks.size() > 0) {
             tracks.get(0).incrementPlayCount();
             player.startPlaying(tracks.get(0).getFilename());
+            playback = true;
         }
     }
 
@@ -135,6 +140,7 @@ public class MusicOrganizer
     public void stopPlaying()
     {
         player.stop();
+        playback = false;
     }
 
     /**
@@ -177,7 +183,7 @@ public class MusicOrganizer
      * Enumera todas las pistas que contengan la cadena de busqueda.
      * @param searchString La cadena a buscar.
      */
-    public void finInTitle(String searchString){
+    public void findInTitle(String searchString){
         for(Track track : tracks){
             String title = track.getTitle();
             if(title.contains(searchString)){
@@ -194,6 +200,18 @@ public class MusicOrganizer
     public void setTrackAlbum(int indice, String album){
         if(indexValid(indice)){
             tracks.get(indice).setAlbum(album);
+        }
+    }
+
+    /**
+     * Muestra por pantalla si hay una reproduccion en curso.
+     */
+    public void isPlaying(){
+        if(playback){
+            System.out.println("Hay una reproducción en curso.");
+        }
+        else{
+            System.out.println("No hay reproducción en curso.");
         }
     }
 }
