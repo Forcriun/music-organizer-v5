@@ -15,7 +15,9 @@ public class Track
     private String filename;
     // Las veces que se ha reproducido la cancion.
     private int playCount;
-    
+    // El album al que pertenece la cancion.
+    private String album;
+
     /**
      * Constructor for objects of class Track.
      * @param artist The track's artist.
@@ -26,8 +28,9 @@ public class Track
     {
         setDetails(artist, title, filename);
         playCount = 0;
+        album = "";
     }
-    
+
     /**
      * Constructor for objects of class Track.
      * It is assumed that the file name cannot be
@@ -38,8 +41,9 @@ public class Track
     {
         setDetails("unknown", "unknown", filename);
         playCount = 0;
+        album = "";
     }
-    
+
     /**
      * Return the artist.
      * @return The artist.
@@ -48,7 +52,7 @@ public class Track
     {
         return artist;
     }
-    
+
     /**
      * Return the title.
      * @return The title.
@@ -57,7 +61,7 @@ public class Track
     {
         return title;
     }
-    
+
     /**
      * Return the file name.
      * @return The file name.
@@ -66,16 +70,34 @@ public class Track
     {
         return filename;
     }
-        
+
+    /**
+     * Devuelve el album de la cancion.
+     * @return El album de la cancion.
+     */
+    public String getAlbum()
+    {
+        return album;
+    }
+
+    /**
+     * Devuelve el album de la cancion.
+     * @return El album de la cancion.
+     */
+    public void setAlbum(String album)
+    {
+        this.album = album;
+    }
+
     /**
      * Return details of the track: artist, title and file name.
      * @return The track's details.
      */
     public String getDetails()
     {
-        return artist + ": " + title + "  (file: " + filename + ") - Reproducciones: " + playCount;
+        return artist + ": " + title + "  (file: " + filename + ") - Reproducciones: " + playCount + ". Album: " + album;
     }
-    
+
     /**
      * Set details of the track.
      * @param artist The track's artist.
@@ -88,11 +110,11 @@ public class Track
         this.title = title;
         this.filename = filename;
     }
-    
+
     public void resetPlayCount(){        
         playCount = 0;
     }
-    
+
     public void incrementPlayCount(){        
         playCount++;
     }
